@@ -7,6 +7,9 @@ export default class Tests extends Component {
     static navigationOptions = {
         title: 'Your Tests'
     };
+    static navigatorStyle = {
+        tabBarHidden: true
+    };
     state = {
         isLoaded : false
     };

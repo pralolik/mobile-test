@@ -5,17 +5,19 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 12,
-        flexDirection: 'row',
+        flexDirection: 'column',
         alignItems: 'center'
     },
     text: {
         marginLeft: 12,
-        fontSize: 16,
+        fontSize: 20,
     },
-    photo: {
+    textInput: {
         height: 40,
-        width: 40,
+        width: 125,
         borderRadius: 20,
+        fontSize: 15,
+        alignItems: 'center'
     },
 });
 
@@ -28,7 +30,7 @@ export default class InputType extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>{this.props.question_text}</Text>
-                <TextInput style={styles.text} placeholder='Enter your answer' />
+                <TextInput style={styles.textInput} placeholder='Answer' />
             </View>
         );
     }

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class TestRow extends Component {
+export default class TestQuestion extends Component {
     constructor(props) {
         super(props);
     }

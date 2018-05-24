@@ -4,6 +4,12 @@ import TestService from "../../services/api/Student/Test";
 import TestQuestion from '../../components/common/Student/TestQuestion';
 
 export default class TestDetails extends Component {
+    static navigatorStyle = {
+        tabBarHidden: true
+    };
+    static navigationOptions = {
+        title: 'Start of test'
+    };
     state = {
         isLoaded : false,
         testData : null

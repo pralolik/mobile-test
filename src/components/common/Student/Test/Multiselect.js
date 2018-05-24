@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, TextInput} from 'react-native';
+import MultiSelect from 'react-native-multiple-select';
+import RadioForm from "react-native-simple-radio-button";
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 12,
-        flexDirection: 'row',
+        padding: 10,
+        flexDirection: 'column',
         alignItems: 'center'
     },
     text: {
         marginLeft: 12,
         fontSize: 16,
     },
-    photo: {
-        height: 40,
-        width: 40,
+    select: {
+        height: 150,
+        width: 150,
         borderRadius: 20,
+        alignItems: 'flex-start'
     },
 });
 
@@ -27,9 +30,23 @@ export default class Multiselect extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Text>{this.props.question_text}</Text>
-                <TextInput style={styles.text} />
+                <Text style={styles.text}>{this.props.question_text}</Text>
+                <RadioForm style={styles.select}
+                           radio_props={this.prepareOptions()}
+                           initial={0}
+                           onPress={(value) => {this.setState({value:value})}}
+                />
             </View>
         );
+    }
+
+    prepareOptions()
+    {
+        let result = [];
+        this.props.answers.forEach(function (option) {
+            result.push({label: option.select_text, value: option.id})
+        });
+
+        return result;
     }
 };

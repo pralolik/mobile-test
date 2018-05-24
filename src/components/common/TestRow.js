@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
 let TestDetails = require("../../screens/Student/TestDetails");
 
 export default class TestRow extends Component {
+    static navigatorStyle = {
+        tabBarHidden: true
+    };
     constructor(props) {
         super(props);
     }
