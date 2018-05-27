@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, Button} from 'react-native';
-import {StackNavigator} from 'react-navigation';
-import * as NavigationActions from "react-navigation";
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -22,7 +21,6 @@ const styles = StyleSheet.create({
         right: 'right'
     }
 });
-let TestDetails = require("../../screens/Student/TestDetails");
 
 export default class TestRow extends Component {
     static navigatorStyle = {
@@ -44,13 +42,8 @@ export default class TestRow extends Component {
                     {this.props.dueDate}{"\n"}
                     {this.props.lessonName}{"\n"}
                 </Text>
-                <Button onPress={() => navigate('TestDetails', {testId: this.props.id })} style={styles.text} title={'Start TEST!'} />
+                <Button onPress={() => navigate('StudentTestDetails', {testId: this.props.id, view: this })} style={styles.text} title={'Start TEST!'} />
             </View>
         );
-    }
-
-    startTest = () => {
-        const { navigate } = this.props.navigation;
-        navigate('TestDetails', {testId: this.props.testName });
     }
 };

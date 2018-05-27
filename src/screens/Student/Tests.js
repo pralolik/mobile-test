@@ -4,12 +4,6 @@ import TestRow from '../../components/common/TestRow';
 import TestService from '../../services/api/Student/Test';
 
 export default class Tests extends Component {
-    static navigationOptions = {
-        title: 'Your Tests'
-    };
-    static navigatorStyle = {
-        tabBarHidden: true
-    };
     state = {
         isLoaded : false
     };
@@ -26,7 +20,7 @@ export default class Tests extends Component {
                 <ListView
                     style={styles.container}
                     dataSource={this.state.dataSource}
-                    renderRow={(data) => <TestRow   {...data} navigation={this.props.navigation}/>}
+                    renderRow={(data) => <TestRow   {...data} parent={this} navigation={this.props.navigation} />}
                     renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
                 />
             );

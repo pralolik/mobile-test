@@ -1,28 +1,31 @@
 import React from 'react';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
-import { Icon } from 'react-native-elements'
 import LessonScreen from './Lessons';
-import TestNavigator from './TestsNavigator';
-import Colors from '../../constants/Colors';
+import Tests from './Tests';
+import InfoTab from '../Info';
 
 const commonNavigationOptions = ({ navigation }) => ({
     header: null,
     title: navigation.state.routeName,
 });
 
-const routeOptionsLessons = {
-    screen: LessonScreen,
-    navigationOptions: commonNavigationOptions,
-};
-const routeOptionsTests = {
-    screen: TestNavigator,
-    navigationOptions: commonNavigationOptions,
-};
-
 const StudentTabNav = TabNavigator(
     {
-        ['Lessons']: routeOptionsLessons,
-        ['Tests']: routeOptionsTests
+        ['Lessons']: {
+            screen: LessonScreen,
+            navigationOptions: commonNavigationOptions,
+            parent: this
+        },
+        ['Tests']: {
+            screen: Tests,
+            navigationOptions: commonNavigationOptions,
+            parent: this
+        },
+        ['Info']: {
+            screen: InfoTab,
+            navigationOptions: commonNavigationOptions,
+            parent: this
+        }
     },
     {
         tabBarComponent: TabBarBottom,

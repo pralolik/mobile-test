@@ -10,6 +10,7 @@ export default class Lessons {
         });
         const json = await response.json();
         var result = [];
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         if (json.errors) {
             result = [];
             view.state = {
@@ -28,7 +29,6 @@ export default class Lessons {
                 newLesson.type = lesson.lesson_type;
                 result.push(newLesson);
             });
-            const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
             view.setState(() => {
                 return {
                     dataSource: ds.cloneWithRows(result),

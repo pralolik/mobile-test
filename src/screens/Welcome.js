@@ -1,38 +1,63 @@
 import React, { Component } from 'react';
-import Login from '../services/api/Login';
-import StudentTabNav from '../screens/Student/Tabs';
-import TeacherLessons from '../screens/Teacher/Lessons';
-import ErrorView from '../screens/Error';
-import LoggedIn from '../screens/LoggedIn';
-import Role from '../services/Roles';
-import {AsyncStorage} from "react-native";
+import Login from './LoggedIn';
+import TeacherTabNav from './Teacher/Tabs';
+import TeacherLessonGroups from './Teacher/LessonDetails';
+import TeacherLessonGroupList from './Teacher/GroupLessonDetails';
+import TeacherTestCreation from './Teacher/Test/Main';
+import TeacherTestCreationVariants from './Teacher/Test/Variants';
+import TeacherTestCreationQuestions from './Teacher/Test/Questions';
+import TeacherQuestionCreate from './Teacher/Test/AddQuestion';
+import StudentTabNav from './Student/Tabs';
+import StudentTestDetails from './Student/TestDetails';
+import {StackNavigator} from 'react-navigation';
 
-export default class Welcome extends Component {
-    state = {
-        role: false,
-    };
+export const AppRouter = StackNavigator(
+    {
+        Login: {
+            screen: Login
+        },
+        TeacherTabs: {
+            screen: TeacherTabNav
+        },
+        TeacherLessonGroups: {
+            screen: TeacherLessonGroups
+        },
+        TeacherLessonGroupList: {
+            screen: TeacherLessonGroupList
+        },
+        TeacherTestCreation: {
+            screen: TeacherTestCreation
+        },
+        TeacherTestCreationVariants: {
+            screen: TeacherTestCreationVariants
+        },
+        TeacherTestCreationQuestions: {
+            screen: TeacherTestCreationQuestions
+        },
+        TeacherQuestionCreate: {
+            screen: TeacherQuestionCreate
+        },
+        StudentTabs: {
+            screen: StudentTabNav
+        },
+        StudentTestDetails: {
+            screen: StudentTestDetails
+        }
+    },
+    {
+        initialRouteName: 'Login',
+        headerMode:'none'
+    }
+);
+
+
+export default class Welcome extends Component{
 
     constructor(props) {
         super(props);
-        AsyncStorage.getItem('role').then((role) => {
-            this.setState(() => {
-                return {
-                    role: role.toString()
-                }
-            })
-        });
     }
 
     render() {
-        if (this.state.role) {
-            if (this.state.role == Role.ROLE_TEACHER) {
-                return <TeacherLessons />
-            } else if (this.state.role == Role.ROLE_STUDENT) {
-                return <StudentTabNav />
-            }
-            return <ErrorView />
-        } else {
-            return <LoggedIn />
-        }
+       return <AppRouter />
     }
 }

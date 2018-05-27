@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
-import {View, ListView, StyleSheet, ActivityIndicator} from 'react-native';
-import LessonTeacherRow from '../../components/common/LessonTeacherRow';
-import LessonsService from '../../services/api/Teacher/Lessons';
+import {View, ListView, StyleSheet, ActivityIndicator, Button} from 'react-native';
+import TestRow from '../../components/common/TeacherTestRow';
+import TestService from '../../services/api/Teacher/Test';
 
-export default class Lessons extends Component {
+export default class Tests extends Component {
     state = {
         isLoaded : false
     };
     constructor(props){
         super(props);
-        LessonsService.getLessons(this);
+        TestService.getTests(this);
     }
 
     render() {
+
         if (!this.state.isLoaded){
             return <View style={styles.spinner}><ActivityIndicator size="large" color="#0000ff" /></View>
         } else {
@@ -20,11 +21,22 @@ export default class Lessons extends Component {
                 <ListView
                     style={styles.container}
                     dataSource={this.state.dataSource}
-                    renderRow={(data) => <LessonTeacherRow {...data} navigation={this.props.navigation}/>}
+                    renderRow={(data) => <TestRow   {...data} parent={this} navigation={this.props.navigation} />}
                     renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
+                    renderFooter={this.renderFooter}
                 />
             );
         }
+    };
+
+    renderFooter = () => {
+        const { navigate } = this.props.navigation;
+        var footer = (
+            <Button title='Add new test' onPress={() => this.props.navigation.navigate('TeacherTestCreation')} />
+        );
+
+        return footer;
+
     };
 }
 
@@ -44,3 +56,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     }
 });
+

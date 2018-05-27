@@ -1,15 +1,9 @@
 import config from '../../Config';
 import React, {AsyncStorage} from 'react-native'
 import Role from "../Roles";
+import { StackActions, NavigationActions } from 'react-navigation';
 
 export default class Login {
-    static isLoggedIn() {
-        return false;
-    }
-
-    static getRole() {
-        return false;
-    }
 
     static async login(email, password, stater) {
         const jsonData = JSON.stringify({email: email, password: password});
@@ -19,7 +13,7 @@ export default class Login {
             headers: {'Accept': 'application/json', 'Content-Type': 'application/json'}
         });
         const json = await response.json();
-        var result = false;
+        let result = false;
         if (json.errors) {
 
             result = false;
@@ -29,14 +23,29 @@ export default class Login {
 
             result = json.user_role;
         }
+        alert(result);
         if (result == Role.ROLE_TEACHER){
             stater.setState(() => {
+                const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [
+                        NavigationActions.navigate({ routeName: 'TeacherTabs'})
+                    ]
+                });
+                stater.props.navigation.dispatch(resetAction);
                 return {
                     role: Role.ROLE_TEACHER
                 }
             });
         } else if (result == Role.ROLE_STUDENT){
             stater.setState(() => {
+                const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [
+                        NavigationActions.navigate({ routeName: 'StudentTabs'})
+                    ]
+                });
+                stater.props.navigation.dispatch(resetAction);
                 return {
                     role: Role.ROLE_STUDENT
                 }
@@ -44,8 +53,6 @@ export default class Login {
         } else {
             alert('Invalid Email or Password');
         }
-        AsyncStorage.getItem('token', (role) => {
-            alert(role);
-        });
+
     }
 }
