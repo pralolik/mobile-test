@@ -9,6 +9,20 @@ import DemoTeacherTabs from './Demo/Teacher/DemoTabs';
 import DemoTeacherLessonGroupList from './Demo/Teacher/Lesson/GroupList';
 import DemoTeacherLessonStudentList from './Demo/Teacher/Lesson/StudentList';
 import DemoTeacherLessonMarkList from './Demo/Teacher/Lesson/MarkList';
+
+import DemoTeacherTestInfo from './Demo/Teacher/Test/Current/Info';
+import DemoTeacherTestGroupInfo from './Demo/Teacher/Test/Current/GroupsStatistic';
+import DemoTeacherTestStudentInfo1 from './Demo/Teacher/Test/Current/StudentStatistic1';
+import DemoTeacherTestStudentInfo2 from './Demo/Teacher/Test/Current/StudentStatistic2';
+
+
+import DemoTeacherTestCreate from './Demo/Teacher/Test/New/EnterInfo';
+import DemoTeacherTestVariants from './Demo/Teacher/Test/New/VariantsList';
+import DemoTeacherTestQuestions from './Demo/Teacher/Test/New/QuestionList';
+import DemoTeacherTestQuestionCreate from './Demo/Teacher/Test/New/QuestionCreate';
+
+import DemoTeacherTestEmpty from './Demo/Teacher/Test/New/EmptyStatistic';
+
 import Fake from './ResultTotal3';
 /** Prod */
 import Login from './LoggedIn';
@@ -32,6 +46,7 @@ export const AppRouter = StackNavigator(
         DemoStart: {
             screen: Demo
         },
+        /** Student */
         DemoStudentTabs:{
             screen: DemoStudentTabs
         },
@@ -41,7 +56,7 @@ export const AppRouter = StackNavigator(
         DemoStudentTestDetails: {
             screen: DemoStudentTestDetails
         },
-
+        /** Teacher Lesson */
         DemoTeacherTabs:{
             screen: DemoTeacherTabs
         },
@@ -54,6 +69,36 @@ export const AppRouter = StackNavigator(
         DemoTeacherLessonMarkList: {
             screen: DemoTeacherLessonMarkList
         },
+        /** Teacher Current test */
+        DemoTeacherTestInfo: {
+            screen: DemoTeacherTestInfo
+        },
+        DemoTeacherTestGroupInfo: {
+            screen: DemoTeacherTestGroupInfo
+        },
+        DemoTeacherTestStudentInfo1: {
+            screen: DemoTeacherTestStudentInfo1
+        },
+        DemoTeacherTestStudentInfo2: {
+            screen: DemoTeacherTestStudentInfo2
+        },
+        /** Teaher New test */
+        DemoTeacherTestCreate: {
+            screen: DemoTeacherTestCreate
+        },
+        DemoTeacherTestVariants: {
+            screen: DemoTeacherTestVariants
+        },
+        DemoTeacherTestQuestions: {
+            screen: DemoTeacherTestQuestions
+        },
+        DemoTeacherTestQuestionCreate: {
+            screen: DemoTeacherTestQuestionCreate
+        },
+        DemoTeacherTestEmpty: {
+            screen: DemoTeacherTestEmpty
+        },
+
         /** Prod */
         Login: {
             screen: Login

@@ -35,7 +35,7 @@ export default class TestRow extends Component {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
-                <Image source={{ uri: 'http://rossmillfarm.com/rossmill3/wp-content/uploads/2017/03/Testing.jpg'}}
+                <Image source={{ uri: 'https://d1e4pidl3fu268.cloudfront.net/66963e4a-ccba-4fdd-ba18-d5862fb4dba7/test.png'}}
                        style={styles.photo} />
                 <Text style={styles.text}>
                     {this.props.testName}{"\n"}

@@ -56,19 +56,7 @@ export default class List extends Component {
                             ]
                     }
                 ]
-            },
-            // {
-            //     testName: 'Контрольная 1',
-            //     dueDate: '2018-07-22',
-            //     lessonName: 'ТВиМС',
-            //     testQData: []
-            // },
-            // {
-            //     testName: 'Контрольная 2',
-            //     dueDate: '2018-08-16',
-            //     lessonName: 'ТВиМС',
-            //     testQData: []
-            // }
+            }
         ];
         const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         this.state = {

@@ -16,11 +16,11 @@ const DemoStudentTabNav = TabNavigator(
             navigationOptions: commonNavigationOptions,
             parent: this
         },
-        // ['Тесты']: {
-        //     screen: Tests,
-        //     navigationOptions: commonNavigationOptions,
-        //     parent: this
-        // },
+        ['Тесты']: {
+            screen: Tests,
+            navigationOptions: commonNavigationOptions,
+            parent: this
+        },
         ['Общее']: {
             screen: InfoTab,
             navigationOptions: commonNavigationOptions,

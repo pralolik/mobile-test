@@ -1,4 +1,4 @@
-package com.mobile_test;
+package com.bsuir_helper;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "mobile_test";
+        return "bsuir_helper";
     }
 }
