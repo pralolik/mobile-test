@@ -14,8 +14,6 @@ export default class Info extends Component {
 
     logout()
     {
-        AsyncStorage.removeItem('token');
-        AsyncStorage.removeItem('role');
         const resetAction = StackActions.reset({
             index: 0,
             actions: [

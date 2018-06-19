@@ -31,7 +31,7 @@ export default class TestDetails extends Component {
                             fields={fields}
                         />
                     </View>
-                    <Button block onPress={() => this.continue()} title='Continue' />
+                    <Button block onPress={() => this.continue()} title='Продолжить' />
                 </View>
             );
         }
@@ -46,12 +46,12 @@ export default class TestDetails extends Component {
             {
                 type: 'text',
                 name: 'test_name',
-                label: 'Test name'
+                label: 'Название теста'
             },
             {
                 type: 'select',
                 name: 'lesson',
-                label: 'Lesson',
+                label: 'Предмет',
                 objectType: true,
                 labelKey: 'label',
                 primaryKey: 'id',
@@ -60,13 +60,13 @@ export default class TestDetails extends Component {
             {
                 type: 'select',
                 name: 'type_of_variant',
-                label: 'Type of variants',
+                label: 'Тип вариантов',
                 options: variantsType
             },
             {
                 type: 'number',
                 name: 'variants_count',
-                label: 'Count of variants'
+                label: 'Количество вариантов'
             }
         ]
     }

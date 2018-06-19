@@ -1,45 +1,37 @@
 import React, { Component } from 'react';
-import {View, StyleSheet, ActivityIndicator} from 'react-native';
-import TestService from "../../services/api/Student/Test";
+import {View, StyleSheet, ListView} from 'react-native';
 import GenerateForm from 'react-native-form-builder';
-import {Button, Text} from "react-native-elements";
+import {Button} from "react-native-elements";
+import {NavigationActions, StackActions} from "react-navigation";
+import Role from "../../../../services/Roles";
 
-export default class TestDetails extends Component {
-    state = {
-        isLoaded : false,
-        testData : null
-    };
+export default class Info extends Component {
     constructor(props){
         super(props);
-        TestService.startTest(this.props.navigation.state.params.testId, this)
     }
 
     render() {
-        if (!this.state.isLoaded){
-            return <View style={styles.spinner}><ActivityIndicator size="large" color="#0000ff" /></View>
-        } else {
-            const fields = this.getFields();
-            return (
+        const fields = this.getFields();
+        return (
+            <View>
                 <View>
-                    <View>
-                        <GenerateForm
-                            ref={(c) => {
-                                this.formGenerator = c;
-                            }}
-                            fields={fields}
-                        />
-                    </View>
-                    <Button block onPress={() => this.end()} title='Завершить тест' />
-                    <Button block onPress={() => this.update()} title='Обновить тест'/>
+                    <GenerateForm
+                        ref={(c) => {
+                            this.formGenerator = c;
+                        }}
+                        fields={fields}
+                    />
                 </View>
-            );
-        }
+                <Button block onPress={() => this.end()} title='Завершить тест' />
+                <Button block onPress={() => this.update()} title='Обновить тест'/>
+            </View>
+        );
     };
 
     getFields()
     {
         let result = [];
-        this.state.dataSource.forEach(function (question) {
+        this.props.navigation.state.params.testQData.forEach(function (question) {
             let newField = {label: question.question_text, name: question.id};
             if (question.question_type == 'INPUT') {
                 newField.type = 'text';
@@ -79,33 +71,69 @@ export default class TestDetails extends Component {
             }
             result.push(newField);
         });
-       return result;
+        return result;
     }
 
     end()
     {
-       let resultJson = this.prepareForm();
-        TestService.endTest(resultJson, this);
+        let newTestQ = this.prepareForm();
+        let oldTests =  this.props.navigation.state.params.parent.state.startData;
+        let newVariant = [];
+        const testName = this.props.navigation.state.params.testName;
+        oldTests.forEach(function (oldTest) {
+            if(oldTest.testName == testName){
+                oldTest.testQData = newTestQ;
+            } else {
+
+                newVariant.push(oldTest);
+            }
+        });
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.props.navigation.state.params.parent.setState(() => {
+            return {
+                dataSource: ds.cloneWithRows(newVariant),
+                startData : newVariant
+            }
+        });
+        this.props.navigation.pop();
     }
 
     update()
     {
-        let resultJson = this.prepareForm();
-        TestService.updateTest(resultJson, this);
+        let newTestQ = this.prepareForm();
+        let oldTests =  this.props.navigation.state.params.parent.state.startData;
+        let newVariant = [];
+        const testName = this.props.navigation.state.params.testName;
+        oldTests.forEach(function (oldTest) {
+            if(oldTest.testName == testName){
+                oldTest.testQData = newTestQ;
+            }
+            newVariant.push(oldTest);
+        });
+        const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
+        this.props.navigation.state.params.parent.setState(() => {
+            return {
+                dataSource: ds.cloneWithRows(newVariant),
+                startData : newVariant
+            }
+        });
+        this.props.navigation.pop();
     }
 
     prepareForm()
     {
         const formValues = this.formGenerator.getValues();
-        let oldJson =  this.state.restData;
-        this.state.dataSource.forEach(function (question) {
+        let newTestQ =  this.props.navigation.state.params.testQData;
+        this.props.navigation.state.params.testQData.forEach(function (question) {
             let currentQuestion = formValues[question.id];
-            oldJson.questions.forEach(function (questionJson) {
+
+            newTestQ.forEach(function (questionJson) {
                 if (questionJson.id == question.id) {
                     if (question.question_type == 'INPUT') {
                         questionJson.text_answer = currentQuestion;
                     } else if (question.question_type == 'SELECT'){
-                        questionJson.selected_answer = [currentQuestion.id];
+                        if (currentQuestion != null)
+                            questionJson.selected_answer = [currentQuestion.id];
                     } else if (question.question_type == 'MULTISELECT'){
                         questionJson.selected_answer = [];
                         currentQuestion.forEach(function (answer) {
@@ -116,7 +144,7 @@ export default class TestDetails extends Component {
             });
         });
 
-        return oldJson;
+        return newTestQ;
     }
 }
 

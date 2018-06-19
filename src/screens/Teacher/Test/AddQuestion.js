@@ -5,6 +5,20 @@ import TestService from "../../../services/api/Teacher/Test";
 import t from 'tcomb-form-native';
 const Form = t.form.Form;
 
+const options = {
+    fields: {
+        question_point: {
+            error: 'It should be a number',
+            autoCorrect: false
+        },
+        question_po1int: {
+            error: 'Choose something you use on a dozen other sites or something you won\'t remember',
+            password: true,
+            autoCorrect: false,
+            secureTextEntry: true
+        }
+    },
+};
 export default class TestDetails extends Component {
     state = {
         isLoaded : false,
@@ -33,6 +47,7 @@ export default class TestDetails extends Component {
                     <Form
                         ref={c => this._form = c} // assign a ref
                         type={this.getFields()}
+                        options={options}
                     />
                     {this.renderButton()}
                 </View>

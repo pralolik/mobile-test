@@ -1,4 +1,16 @@
 import React, { Component } from 'react';
+import Start from './Start';
+/** Demo */
+import Demo from './Demo/DemoStart';
+import DemoStudentTabs from './Demo/Student/DemoTabs';
+import DemoStudentLessonDetails from './Demo/Student/Lesson/Info';
+import DemoStudentTestDetails from './Demo/Student/Test/Info';
+import DemoTeacherTabs from './Demo/Teacher/DemoTabs';
+import DemoTeacherLessonGroupList from './Demo/Teacher/Lesson/GroupList';
+import DemoTeacherLessonStudentList from './Demo/Teacher/Lesson/StudentList';
+import DemoTeacherLessonMarkList from './Demo/Teacher/Lesson/MarkList';
+import Fake from './ResultTotal3';
+/** Prod */
 import Login from './LoggedIn';
 import TeacherTabNav from './Teacher/Tabs';
 import TeacherLessonGroups from './Teacher/LessonDetails';
@@ -13,8 +25,41 @@ import {StackNavigator} from 'react-navigation';
 
 export const AppRouter = StackNavigator(
     {
+        Start: {
+            screen: Start
+        },
+        /** Demo */
+        DemoStart: {
+            screen: Demo
+        },
+        DemoStudentTabs:{
+            screen: DemoStudentTabs
+        },
+        DemoStudentLessonDetails: {
+            screen: DemoStudentLessonDetails
+        },
+        DemoStudentTestDetails: {
+            screen: DemoStudentTestDetails
+        },
+
+        DemoTeacherTabs:{
+            screen: DemoTeacherTabs
+        },
+        DemoTeacherLessonGroupList: {
+            screen: DemoTeacherLessonGroupList
+        },
+        DemoTeacherLessonStudentList: {
+            screen: DemoTeacherLessonStudentList
+        },
+        DemoTeacherLessonMarkList: {
+            screen: DemoTeacherLessonMarkList
+        },
+        /** Prod */
         Login: {
             screen: Login
+        },
+        Fake: {
+            screen: Fake
         },
         TeacherTabs: {
             screen: TeacherTabNav
@@ -45,7 +90,7 @@ export const AppRouter = StackNavigator(
         }
     },
     {
-        initialRouteName: 'Login',
+        initialRouteName: 'Start',
         headerMode:'none'
     }
 );

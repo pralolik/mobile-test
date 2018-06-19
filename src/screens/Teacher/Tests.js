@@ -32,7 +32,7 @@ export default class Tests extends Component {
     renderFooter = () => {
         const { navigate } = this.props.navigation;
         var footer = (
-            <Button title='Add new test' onPress={() => this.props.navigation.navigate('TeacherTestCreation')} />
+            <Button title='Создать тест' onPress={() => this.props.navigation.navigate('TeacherTestCreation')} />
         );
 
         return footer;

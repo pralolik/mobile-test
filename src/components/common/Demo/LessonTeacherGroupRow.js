@@ -28,14 +28,16 @@ export default class LessonTeacherGroupRow extends Component {
         const { navigate } = this.props.navigation;
         return (
             <View>
-
+                <TouchableHighlight onPress={() => navigate('DemoTeacherLessonStudentList',
+                    {lessonName: this.props.lessonName, lessonType: this.props.lessonType, groupNumber: this.props.group_name, teacherData: this.props.teacherData, view: this })}>
                     <View style={styles.container}>
                         <Image source={{ uri: 'https://cdn3.iconfinder.com/data/icons/black-easy/512/538303-user_512x512.png'}}
                                style={styles.photo} />
                         <Text style={styles.text}>
-                            {this.props.groupNumber}{"\n"}
+                            {this.props.group_name}{"\n"}
                         </Text>
                     </View>
+                </TouchableHighlight>
             </View>
         );
     }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image, Button} from 'react-native';
+import DemoStudentTestDetails from "../../../screens/Demo/Student/Test/Info";
 
 const styles = StyleSheet.create({
     container: {
@@ -31,7 +32,6 @@ export default class TestRow extends Component {
     }
 
     render() {
-
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.container}>
@@ -42,7 +42,7 @@ export default class TestRow extends Component {
                     {this.props.dueDate}{"\n"}
                     {this.props.lessonName}{"\n"}
                 </Text>
-                <Button onPress={() => navigate('StudentTestDetails', {testId: this.props.id, view: this })} style={styles.text} title={'Начать тест'} />
+                <Button onPress={() => navigate('DemoStudentTestDetails', {testName: this.props.testName,testQData: this.props.testQData, view: this, parent: this.props.parent })} style={styles.text} title={'Начать тест'} />
             </View>
         );
     }

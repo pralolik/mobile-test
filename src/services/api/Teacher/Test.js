@@ -51,7 +51,7 @@ export default class Lessons {
         if (jsonResponse.errors) {
 
         } else {
-            alert('Saved');
+            alert('Сохранено');
             view.props.navigation.navigate('TeacherTestCreationVariants', {testId: jsonResponse.id});
         }
     }
@@ -143,7 +143,7 @@ export default class Lessons {
         if (jsonResponse.errors) {
 
         } else {
-            alert('Saved');
+            alert('Сохранено');
             view.props.navigation.pop();
         }
     }

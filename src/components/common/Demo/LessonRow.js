@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export default class LessonTeacherGroupRow extends Component {
+export default class LessonRow extends Component {
     constructor(props) {
         super(props);
     }
@@ -28,14 +28,17 @@ export default class LessonTeacherGroupRow extends Component {
         const { navigate } = this.props.navigation;
         return (
             <View>
-
+                <TouchableHighlight onPress={() => {navigate('DemoStudentLessonDetails', {lesson: this.props.lessonName})}}>
                     <View style={styles.container}>
                         <Image source={{ uri: 'https://cdn3.iconfinder.com/data/icons/black-easy/512/538303-user_512x512.png'}}
                                style={styles.photo} />
                         <Text style={styles.text}>
-                            {this.props.groupNumber}{"\n"}
+                            {this.props.teacherName}{"\n"}
+                            {this.props.type}{"\n"}
+                            {this.props.lessonName}{"\n"}
                         </Text>
                     </View>
+                </TouchableHighlight>
             </View>
         );
     }

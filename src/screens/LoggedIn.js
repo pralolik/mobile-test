@@ -14,11 +14,11 @@ const User = t.struct({
 const options = {
     fields: {
         email: {
-            error: 'Without an email address how are you going to reset your password when you forget it?',
+            error: 'Введите свой email. Пример: example@mail.com',
             autoCorrect: false
         },
         password: {
-            error: 'Choose something you use on a dozen other sites or something you won\'t remember',
+            error: 'Введите пароль',
             password: true,
             autoCorrect: false,
             secureTextEntry: true
@@ -50,7 +50,7 @@ export default class LoggedIn extends Component {
                     options={options}
                 />
                 <Button
-                    title="Sign Up!"
+                    title="Вход"
                     onPress={this.handleSubmit}
                 />
             </View>

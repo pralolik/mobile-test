@@ -1,7 +1,7 @@
 import React from 'react';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
-import LessonScreen from './Lessons';
-import Tests from './Tests';
+import LessonScreen from './Lesson/List';
+import Tests from './Test/List';
 import InfoTab from '../Info';
 
 const commonNavigationOptions = ({ navigation }) => ({
@@ -9,7 +9,7 @@ const commonNavigationOptions = ({ navigation }) => ({
     title: navigation.state.routeName,
 });
 
-const TeacherTabNav = TabNavigator(
+const DemoStudentTabNav = TabNavigator(
     {
         ['Предметы']: {
             screen: LessonScreen,
@@ -35,4 +35,4 @@ const TeacherTabNav = TabNavigator(
     },
 );
 
-export default TeacherTabNav;
+export default DemoStudentTabNav;

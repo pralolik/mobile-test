@@ -11,17 +11,17 @@ const commonNavigationOptions = ({ navigation }) => ({
 
 const StudentTabNav = TabNavigator(
     {
-        ['Lessons']: {
+        ['Предметы']: {
             screen: LessonScreen,
             navigationOptions: commonNavigationOptions,
             parent: this
         },
-        ['Tests']: {
+        ['Тесты']: {
             screen: Tests,
             navigationOptions: commonNavigationOptions,
             parent: this
         },
-        ['Info']: {
+        ['Общее']: {
             screen: InfoTab,
             navigationOptions: commonNavigationOptions,
             parent: this

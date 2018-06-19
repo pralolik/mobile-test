@@ -31,7 +31,7 @@ export default class Tests extends Component {
 
     renderFooter = () => {
         var footer = (
-            <Button title='Add new question' onPress={() => this.props.navigation.navigate('TeacherQuestionCreate', {variantId: this.props.navigation.state.params.variantId})} />
+            <Button title='Добавить вопрос' onPress={() => this.props.navigation.navigate('TeacherQuestionCreate', {variantId: this.props.navigation.state.params.variantId})} />
         );
 
         return footer;

@@ -23,7 +23,6 @@ export default class Login {
 
             result = json.user_role;
         }
-        alert(result);
         if (result == Role.ROLE_TEACHER){
             stater.setState(() => {
                 const resetAction = StackActions.reset({
@@ -51,7 +50,7 @@ export default class Login {
                 }
             });
         } else {
-            alert('Invalid Email or Password');
+            alert('Неверный email или пароль');
         }
 
     }
